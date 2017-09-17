@@ -2,8 +2,7 @@ class Devise::SmsActivationsController < DeviseController
 
   # GET /resource/sms_activation/new
   def new
-    build_resource({})
-    # render :new
+    build_resource
   end
 
   # POST /resource/sms_activation
@@ -14,8 +13,6 @@ class Devise::SmsActivationsController < DeviseController
     if resource.errors.empty?
       set_flash_message :notice, :send_token, :phone => self.resource.phone if is_flashing_format?
       respond_with({}, location: after_resending_sms_token_path_for(resource_name))
-      ## set_flash_message :notice, :send_token, :phone => self.resource.phone if is_navigational_format?
-      ## respond_with({}, :location => after_sending_sms_activation_code_path_for(resource_name))
     else
       respond_with(resource)
     end
@@ -23,7 +20,7 @@ class Devise::SmsActivationsController < DeviseController
 
   # GET /resource/sms_activation/insert
   def insert
-    build_resource({})
+    build_resource
   end
 
   # GET or POST /resource/sms_activation/consume?sms_token=abcdef
@@ -34,11 +31,8 @@ class Devise::SmsActivationsController < DeviseController
     if resource.errors.empty?
       set_flash_message :notice, :confirmed if is_flashing_format?
       respond_with resource, location: after_sms_confirmation_path_for(resource_name, resource)
-      ## sign_in(resource_name, resource)
-      ## respond_with({}, :location => after_sign_in_path_for(resource_name))
     else
-      respond_with resource, action: :insert
-      ## respond_with(resource, :message => find_message(:sms_activation_error, :sms_token => params[:sms_token]))
+      respond_with(resource, :message => find_message(:sms_activation_error, :sms_token => params[:sms_token]))
     end
   end
 
@@ -59,9 +53,4 @@ class Devise::SmsActivationsController < DeviseController
         new_session_path(resource_name)
       end
     end
-
-    # def after_sending_sms_activation_code_path_for(resource_name)
-    #   new_session_path(resource_name) if is_navigational_format?
-    # end
-
 end

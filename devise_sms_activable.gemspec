@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
   
   {
     'bundler'     => '~> 1.0.7',
-    'rspec-rails' => '~> 2.5.0'
+    'rspec-rails' => '~> 2.5.0',
+    'pry-rails' => '~> 0.3.6',
+    'pry-byebug' => '~> 3.5.0'
   }.each do |lib, version|
     s.add_development_dependency(lib, version)
   end

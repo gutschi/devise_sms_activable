@@ -78,7 +78,7 @@ module Devise
 
       # The message to be shown if the account is inactive.
       def inactive_message
-        sms_confirmation_required? && !confirmed_sms? ? :unconfirmed_sms : super
+        sms_confirmation_required? && !confirmed_sms? ? I18n.t(:"devise.sms_activations.unconfirmed_sms") : super
       end
 
       # If you don't want confirmation to be sent on create, neither a code

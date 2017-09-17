@@ -9,5 +9,3 @@ module DeviseSmsActivable
     end
   end
 end
-
-#Devise::Schema.send :include, DeviseSmsActivable::Schema
